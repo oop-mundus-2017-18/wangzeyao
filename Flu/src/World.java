@@ -52,8 +52,8 @@ public class World {
                     int RandLoc1 = random1.nextInt(1001);
                     Location Initlocation = new Location(new int[RandLoc0][RandLoc1]);
                 }else if (being instanceof Human){
-//
-//                        being.setLocation();
+                      int[][] home = being ()
+                      being.setLocation();
                     }
         }
     }
