@@ -44,16 +44,17 @@ public class World {
             case "rainy":
                 for (Being being : beings) {
                     Random random2 = new Random();
-                    int randnum = random2.nextInt(10) + 1;
-                    if (randnum <= 3) {
-                        Random random0 = new Random();
-                        int RandLoc0 = random0.nextInt(1001);
-                        Random random1 = new Random();
-                        int RandLoc1 = random1.nextInt(1001);
-                        Location Initlocation = new Location(new int[RandLoc0][RandLoc1]);
-                    } else if (being instanceof Human) {
-//
-//                        being.setLocation();
+                    int randnum = random2.nextInt(10)+1;
+                    if (randnum <=3){
+                    Random random0 = new Random();
+                    int RandLoc0 = random0.nextInt(1001);
+                    Random random1 = new Random();
+                    int RandLoc1 = random1.nextInt(1001);
+                    Location Initlocation = new Location(new int[RandLoc0][RandLoc1]);
+                }else if (being instanceof Human){
+//                      int[][] home = being ()
+//                      being.setLocation();
+
                     }
                 }
         }
