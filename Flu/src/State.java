@@ -6,7 +6,7 @@
  * @Version: 1.0
  */
 public enum State {
-    HEALTHY("healthy"),INFECTED("infected"),SICK("sick"),RECOVERD("recovered"),DEAD("dead");
+    HEALTHY("healthy"),INFECTED("infected"),SICK("sick"),RECOVERD("recovered"),DEAD("dead"),CONTAGIOUS("contagioous"),RECOVERING("recovering");
     private String state;
     State(String state) {
         this.state = state;

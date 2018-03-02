@@ -20,7 +20,6 @@ public enum Climate {
 
     Climate(String weather) {
             this.weather = weather;
-
         }
     }
 

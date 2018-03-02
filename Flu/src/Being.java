@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Author: WANG ZEYAO
  * @Description:
@@ -8,11 +11,11 @@
 public class Being {
     private int age;
     private boolean IsMale;
-    private State state;
-    private Location location;
+    private List<State> state = new ArrayList();
+     Location location;
     private boolean IsVaccinal;
 
-    public Being(int age,boolean isMale,State state,Location location,boolean isVaccinal){
+    public Being(int age,boolean isMale,ArrayList state,Location location,boolean isVaccinal){
         this.age = age;
         this.IsMale = isMale;
         this.state = state;
@@ -39,11 +42,11 @@ public class Being {
         IsMale = male;
     }
 
-    public State getState() {
+    public List<State> getState() {
         return state;
     }
 
-    public void setState(State state) {
+    public void setState(ArrayList state) {
         this.state = state;
     }
 
@@ -51,9 +54,9 @@ public class Being {
         return location;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
+//    public void ChangeLocation() {
+//        this.location.ChangeLoc();
+//    }
 
     public boolean isVaccinal() {
         return IsVaccinal;

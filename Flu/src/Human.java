@@ -13,7 +13,7 @@ import java.util.Map;
  * @Version: 1.0
  */
 public class Human extends Being {
-    private Location home;
+//    private Location home;
     private Map<String,Human> friends;
 
 }
