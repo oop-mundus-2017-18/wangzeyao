@@ -11,16 +11,53 @@ import java.util.List;
 public class Being {
     private int age;
     private boolean IsMale;
-    private List<State> state = new ArrayList();
+    private State state;
      Location location;
     private boolean IsVaccinal;
+    private List<Virus> DNA_Flaw = new ArrayList<>();
+    private List<Virus> Antibody = new ArrayList<>();
+    private int event_time;
 
-    public Being(int age,boolean isMale,ArrayList state,Location location,boolean isVaccinal){
+    public Virus getVirus() {
+        return virus;
+    }
+
+    public void setVirus(Virus virus) {
+        this.virus = virus;
+    }
+
+    private Virus virus = null;
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public List<Virus> getDNA_Flaw() {
+        return DNA_Flaw;
+    }
+
+    public void setDNA_Flaw(List<Virus> DNA_Flaw) {
+        this.DNA_Flaw = DNA_Flaw;
+    }
+
+    public List<Virus> getAntibody() {
+        return Antibody;
+    }
+
+    public void setAntibody(List<Virus> antibody) {
+        Antibody = antibody;
+    }
+
+    public Being(int age, boolean isMale, State state, Location location, boolean isVaccinal, ArrayList dna, ArrayList antibody,int event_time,Virus virus){
         this.age = age;
         this.IsMale = isMale;
         this.state = state;
         this.location = location;
         this.IsVaccinal = isVaccinal;
+        this.DNA_Flaw = dna;
+        this.Antibody = antibody;
+        this.event_time = event_time;
+        this.virus = virus;
     }
     public int getAge() {
         return age;
@@ -42,11 +79,11 @@ public class Being {
         IsMale = male;
     }
 
-    public List<State> getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(ArrayList state) {
+    public void setState(State state) {
         this.state = state;
     }
 
