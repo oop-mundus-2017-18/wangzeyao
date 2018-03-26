@@ -39,6 +39,15 @@ public class Location {
        int RandLocRow = randomrow.nextInt(1001);
        this.row = RandLocRow;
    }
+   boolean IsSame(Location location){
+        int rowin = location.getRow();
+        int colin = location.getCol();
+        if (this.row == rowin && this.col == colin){
+            return true;
+        }else {
+            return false;
+        }
+   }
    void ChangeLoc(){
         ChangeCol();
         ChangeRow();
