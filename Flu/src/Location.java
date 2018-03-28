@@ -33,11 +33,11 @@ public class Location {
 
     void InitialLoc(){
        Random randomcol = new Random();
-       int RandLocCol = randomcol.nextInt(1001);
-       this.col = RandLocCol;
+       int RandLocCol = randomcol.nextInt(1000);
+       this.col = RandLocCol+1;
        Random randomrow = new Random();
-       int RandLocRow = randomrow.nextInt(1001);
-       this.row = RandLocRow;
+       int RandLocRow = randomrow.nextInt(1000);
+       this.row = RandLocRow+1;
    }
    boolean IsSame(Location location){
         int rowin = location.getRow();

@@ -1,10 +1,15 @@
+import java.util.ArrayList;
+
 /**
  * @Author: WANG ZEYAO
  * @Description:
- * @Date: 2018/3/2  8:43
+ * @Date: 2018/3/28  18:48
  * @ProjectName: wangzeyao
  * @Version: 1.0
  */
-public enum Event {
-    CONTACT,INCUBATION_TIME,CONTAGIOUS_TIME,RECOVERY_TIME;
+public class Event {
+
+
+
+
 }

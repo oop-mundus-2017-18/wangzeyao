@@ -6,4 +6,7 @@
  * @Version: 1.0
  */
 public class Duck extends Animal {
+    public Duck() {
+        AddAntibody(Virus.H1N1);
+    }
 }

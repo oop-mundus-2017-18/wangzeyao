@@ -1,3 +1,5 @@
+import java.beans.PropertyVetoException;
+
 /**
  * @Author: WANG ZEYAO
  * @Description:
@@ -6,12 +8,23 @@
  * @Version: 1.0
  */
 public enum Virus {
-    H3N2("h3n2",0.1),H1N1("h1n1",0.2),H1N2("h1n2",0.2),H3N3("h3n3",0.3),H0N0("h0n0",0.9);
+    H5N1("h3n2",0.1,2,0.6),H1N1("h1n1",0.2,2,0.),H0N0("h0n0",0.9,2,0.9);
     private String name;
-
+    private double contag_rate;
+    private int incu_period;
     public String getName() {
         return name;
     }
+
+    public double getDeath_rate() {
+        return death_rate;
+    }
+
+    public void setDeath_rate(double death_rate) {
+        this.death_rate = death_rate;
+    }
+
+    private double death_rate;
 
     public void setName(String name) {
         this.name = name;
@@ -25,9 +38,11 @@ public enum Virus {
         this.contag_rate = contag_rate;
     }
 
-    private double contag_rate;
-    Virus(String name,double contag_rate) {
+
+    Virus(String name,double contag_rate,int time,double death_rate) {
         this.name = name;
         this.contag_rate = contag_rate;
+        this.incu_period = time;
+        this.death_rate = death_rate;
     }
 }

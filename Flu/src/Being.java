@@ -12,11 +12,30 @@ public class Being {
     private int age;
     private boolean IsMale;
     private State state;
-     Location location;
+    Location location = new Location();
     private boolean IsVaccinal;
     private List<Virus> DNA_Flaw = new ArrayList<>();
     private List<Virus> Antibody = new ArrayList<>();
-    private int event_time;
+    private int inf_time;
+    private int recov_time;
+    private int conta_time;
+    private int sick_time;
+
+    public int getSick_time() {
+        return sick_time;
+    }
+
+    public void setSick_time() {
+        this.sick_time++;
+    }
+
+    public int getConta_time() {
+        return conta_time;
+    }
+
+    public void setConta_time() {
+        this.conta_time++;
+    }
 
     public Virus getVirus() {
         return virus;
@@ -48,7 +67,7 @@ public class Being {
         Antibody = antibody;
     }
 
-    public Being(int age, boolean isMale, State state, Location location, boolean isVaccinal, ArrayList dna, ArrayList antibody,int event_time,Virus virus){
+    public Being(int age, boolean isMale, State state, Location location, boolean isVaccinal, ArrayList dna, ArrayList antibody, Virus virus) {
         this.age = age;
         this.IsMale = isMale;
         this.state = state;
@@ -56,9 +75,9 @@ public class Being {
         this.IsVaccinal = isVaccinal;
         this.DNA_Flaw = dna;
         this.Antibody = antibody;
-        this.event_time = event_time;
         this.virus = virus;
     }
+
     public int getAge() {
         return age;
     }
@@ -101,5 +120,33 @@ public class Being {
 
     public void setVaccinal(boolean vaccinal) {
         IsVaccinal = vaccinal;
+    }
+
+
+    public int getInf_time() {
+        return inf_time;
+    }
+
+    public void setInf_time() {
+        this.inf_time++;
+    }
+
+    public int getRecov_time() {
+        return recov_time;
+    }
+
+    public void setRecov_time() {
+        this.recov_time++;
+    }
+    void AddAntibody(Virus virus){
+        Antibody.add(virus);
+    }
+    boolean CheckAntibody(Virus virus){
+        for (Virus virus1 : Antibody) {
+            if (virus1 == virus1){
+                return true;
+            }
+        }
+        return false;
     }
 }

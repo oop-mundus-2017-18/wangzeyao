@@ -6,4 +6,7 @@
  * @Version: 1.0
  */
 public class Pig extends Animal {
+    public Pig() {
+        AddAntibody(Virus.H5N1);
+    }
 }
