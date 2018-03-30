@@ -10,10 +10,6 @@ import java.util.Random;
  * @Version: 1.0
  */
 public class Location {
-    int coldownsize = 1;
-    int colupsize = 2;
-    int rowdownsize = 1;
-    int rowupsize = 2;
     int col;
     int row;
 //    int [][] location = new int[1000][1000];
@@ -39,24 +35,13 @@ public class Location {
     public void setRow(int row) {
         this.row = row;
     }
-public void setsize(int colup,int rowup,int coldown,int rowdown){
-        this.rowdownsize = rowdown;
-        this.rowupsize = rowup;
-        this.coldownsize = coldown;
-        this.colupsize = colup;
-}
-public int[] getsize(){
-    int[] size = new int[3];
-    size[1] = colupsize;
-    size[2] = rowupsize;
-    return size;
-}
+
     void InitialLoc() {
         Random randomcol = new Random();
-        int RandLocCol = randomcol.nextInt(3);
+        int RandLocCol = randomcol.nextInt(World.getsize()[0]);
         this.col = RandLocCol + 1;
         Random randomrow = new Random();
-        int RandLocRow = randomrow.nextInt(3);
+        int RandLocRow = randomrow.nextInt(World.getsize()[1]);
         this.row = RandLocRow + 1;
     }
 
@@ -79,13 +64,13 @@ public int[] getsize(){
     }
 
     void ChangeCol() {
-        if (col == coldownsize) {
+        if (col == 1) {
             Random random = new Random();
             int proba = random.nextInt(2);
             if (proba == 0) {
                 this.col++;
             }
-        } else if (col == colupsize) {
+        } else if (col == World.getsize()[0]) {
             Random random = new Random();
             int proba = random.nextInt(2);
             if (proba == 0) {
@@ -108,14 +93,14 @@ public int[] getsize(){
     }
 
     void ChangeRow() {
-        if (row == rowdownsize) {
+        if (row == 1) {
             Random rand1 = new Random();
             int rand1_1 = rand1.nextInt(2);
             if (rand1_1 == 0) {
                 this.row++;
             }
-        } else if (row == rowupsize) {
-            if (row == rowdownsize) {
+        } else if (row == World.getsize()[1]) {
+//            if (row == rowdownsize) {
                 Random rand1 = new Random();
                 int rand1_1 = rand1.nextInt(2);
                 if (rand1_1 == 0) {
@@ -137,4 +122,3 @@ public int[] getsize(){
             }
         }
     }
-}

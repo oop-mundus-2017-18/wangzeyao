@@ -1,5 +1,4 @@
 import java.math.BigDecimal;
-import java.security.Key;
 import java.util.*;
 
 /**
@@ -18,29 +17,37 @@ public class World {
     private ArrayList<Duck> ducks = new ArrayList();
     private ArrayList<Chicken> chickens = new ArrayList();
     private ArrayList<Pig> pigs = new ArrayList();
-
+    static int  colupsize = 0;
+    static int  rowupsize = 0;
 
     public void start() {
         System.out.println("Welcome to the sim world of flu" + "\n" + "How mach day you want to run it?");
         Scanner scanner = new Scanner(System.in);
-//        int numberofday = scanner.nextInt();
-        int numberofday = 50;
+        int numberofday = scanner.nextInt();
+//        int numberofday = 50;
         System.out.println("How many humans do you want in the world?");
         Scanner scanner1 = new Scanner(System.in);
-//        int numberofhuman = scanner1.nextInt();
-        int numberofhuman = 10;
+        int numberofhuman = scanner1.nextInt();
+//        int numberofhuman = 10;
         System.out.println("How many pigs do you want in the world?");
         Scanner scanner2 = new Scanner(System.in);
-//        int numberofpig = scanner2.nextInt();
-        int numberofpig = 2;
+        int numberofpig = scanner2.nextInt();
+//        int numberofpig = 20;
         System.out.println("How many ducks do you want in the world?");
         Scanner scanner3 = new Scanner(System.in);
-//        int numberofduck = scanner3.nextInt();
-        int numberofduck = 12;
+        int numberofduck = scanner3.nextInt();
+//        int numberofduck = 12;
         System.out.println("How many chickens do you want in the world?");
         Scanner scanner4 = new Scanner(System.in);
-//        int numberofchicken = scanner4.nextInt();
-        int numberofchicken = 13;
+        int numberofchicken = scanner4.nextInt();
+        System.out.println("How many cols do you want in the world?");
+        Scanner scanner5 = new Scanner(System.in);
+        int col = scanner5.nextInt();
+        System.out.println("How many rows do you want in the world?");
+        Scanner scanner6 = new Scanner(System.in);
+        int row = scanner6.nextInt();
+        SetSize(col,row);
+//        int numberofchicken = 13;
         BeingIniti(numberofhuman, numberofpig, numberofduck, numberofchicken);
         LocInitialize();
         System.out.println("Initialization complete");
@@ -49,14 +56,10 @@ public class World {
             for (Being being : beings) {
                 event(being);
             }
-            System.out.println("Today have "+ countstateall()[0]+" healthy beings");
-            System.out.println("Today have "+ countstateall()[1]+" sick and contagious beings");
-            System.out.println("Today have "+ countstateall()[2]+" contagious but not sick beings");
-            System.out.println("Today have "+ countstateall()[3]+" dead beings");
-            System.out.println("Today have "+ countstateall()[4]+" beings in recovering");
-            int infected =countstateall()[5]+countstateall()[1]+countstateall()[2];
-            System.out.println("Today have "+ infected+" infected people");
-            System.out.println("End of the day" + "\n");
+           PrintResult("human");
+            PrintResult("duck");
+            PrintResult("pig");
+            PrintResult("chicken");
         }
 
 
@@ -100,9 +103,9 @@ public class World {
                 chickens.get(a).setVirus(Virus.H5N1);
                 chickens.get(a).setState(State.INFECTED);
             }
-            for (int b = 0; b < numberofpig; b++) {
+            for (int b = 0; b < sourcepig; b++) {
                 pigs.get(b).setVirus(Virus.H1N1);
-                pigs.get(b).setState(State.CONTAGIOUS);
+                pigs.get(b).setState(State.INFECTED);
             }
             for (int c = 0; c < sourceduck; c++) {
                 ducks.get(c).setVirus(Virus.H5N1);
@@ -116,8 +119,8 @@ public class World {
             b.location.InitialLoc();
         }
 
-        for (int i = 1; i <= 2; i++) {
-            for (int j = 1; j <= 2; j++) {
+        for (int i = 1; i <= colupsize; i++) {
+            for (int j = 1; j <= rowupsize; j++) {
                 Location location = new Location(i, j);
                 count.put(location, new ArrayList<Being>());
             }
@@ -208,35 +211,6 @@ public class World {
         }
         return count;
         }
-//        for (Being being : beings) {
-//            if (being.getLocation().IsSame(location)) {
-//                State state = being.getState();
-//                switch (state) {
-//                    case HEALTHY:
-//                        count[0]++;
-//                        break;
-//                    case CONTA_SICK:
-//                        count[1]++;
-//                        conta_beings.add(being);
-//                        break;
-//                    case CONTAGIOUS:
-//                        count[2]++;
-//                        conta_beings.add(being);
-//                        break;
-//                    case DEAD:
-//                        count[3]++;
-//                        break;
-//                    case RECOVERING:
-//                        count[4]++;
-//                        break;
-//                    case INFECTED:
-//                        count[5]++;
-//                        break;
-//                    default:
-//                }
-//            }
-
-
 
 
     State IfInfect(ArrayList<Being> infected_being, Being being) {
@@ -330,7 +304,7 @@ public class World {
     void event4inf(Being being) {
         being.setInf_time();
         int inftime = being.getInf_time();
-        if (inftime >= 1) {
+        if (inftime >= 2) {
             Random random = new Random();
             int prob = random.nextInt(9) + 1;
             if (prob <= 3) {
@@ -373,7 +347,6 @@ public class World {
         } else {
             being.setState(State.HEALTHY);
             being.AddAntibody(being.getVirus());
-//         being.setVirus(null);
         }
     }
 
@@ -387,8 +360,8 @@ public class World {
 
     void SetMap() {
         count.clear();
-        for (int i = 1; i <= 2; i++) {
-            for (int j = 1; j <= 2; j++) {
+        for (int i = 1; i <= colupsize; i++) {
+            for (int j = 1; j <= rowupsize; j++) {
                 Location location = new Location(i, j);
                 count.put(location, new ArrayList<Being>());
             }
@@ -404,34 +377,40 @@ public class World {
         }
     }
 
-    int[] countstateall() {
-        int[] count = new int[6];
+    Map<String, int[]> CountAllState() {
+       Map<String,int[]> countstate = new HashMap<>();
+        int[] duck = new int[6];
+        int[] human = new int[6];
+        int[] pig = new int[6];
+        int[] chicken = new int[6];
+        countstate.put("human",human);
+        countstate.put("duck",duck);
+        countstate.put("pig",pig);
+        countstate.put("chicken",chicken);
         for (Being being : beings) {
             switch (being.getState()) {
                 case HEALTHY:
-                    count[0]++;
+                    countstate.get(WhichBeing(being))[0]++;
                     break;
                 case CONTA_SICK:
-                    count[1]++;
-                    conta_beings.add(being);
+                    countstate.get(WhichBeing(being))[1]++;
                     break;
                 case CONTAGIOUS:
-                    count[2]++;
-                    conta_beings.add(being);
+                    countstate.get(WhichBeing(being))[2]++;
                     break;
                 case DEAD:
-                    count[3]++;
+                    countstate.get(WhichBeing(being))[3]++;
                     break;
                 case RECOVERING:
-                    count[4]++;
+                    countstate.get(WhichBeing(being))[4]++;
                     break;
                 case INFECTED:
-                    count[5]++;
+                    countstate.get(WhichBeing(being))[5]++;
                     break;
                 default:
             }
         }
-        return count;
+        return countstate;
     }
     void coutloc(){
         int i = 0;
@@ -439,6 +418,36 @@ public class World {
             i = i+ count.get(location).size();
         }
         System.out.println(i);
+    }
+    String WhichBeing(Being being){
+        if (being instanceof Human){
+           return "human";
+        }else if (being instanceof Duck){
+            return "duck";
+        }else if (being instanceof Pig){
+            return "pig";
+        }else {
+            return "chicken";
+        }
+    }
+    void PrintResult(String being){
+        System.out.println("Today have "+ CountAllState().get(being)[0]+" healthy "+being);
+        System.out.println("Today have "+ CountAllState().get(being)[1]+" sick and contagious "+being);
+        System.out.println("Today have "+ CountAllState().get(being)[2]+" contagious but not sick "+being);
+        System.out.println("Today have "+ CountAllState().get(being)[3]+" dead "+being);
+        System.out.println("Today have "+ CountAllState().get(being)[4]+" humans in "+being);
+        int infected = CountAllState().get(being)[5]+ CountAllState().get(being)[1]+ CountAllState().get(being)[2];
+        System.out.println("Today have "+ infected+" infected "+being+"\n");
+    }
+    public static int[] getsize(){
+        int[] size = new int[3];
+        size[0] = colupsize;
+        size[1] = rowupsize;
+        return size;
+    }
+    public void SetSize(int col,int row){
+        this.colupsize = col;
+        this.rowupsize = row;
     }
 }
 
