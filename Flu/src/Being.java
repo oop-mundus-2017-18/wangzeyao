@@ -12,18 +12,30 @@ public class Being {
     private int age;
     private boolean IsMale;
     private State state;
-    Location location = new Location();
+    Location location = new Location(0,0);
     private boolean IsVaccinal;
     private List<Virus> DNA_Flaw = new ArrayList<>();
     private List<Virus> Antibody = new ArrayList<>();
-    private int inf_time;
-    private int recov_time;
-    private int conta_time;
-    private int sick_time;
+    private int inf_time = 0;
+    private int recov_time = 0;
+    private int conta_time = 0;
+    private int sick_time = 0;
+    private Virus virus = null;
+    public Being(){
+        this.state = State.HEALTHY;
 
+
+    }
+    public void say(){
+        System.out.println(location.getCol()+" , "+location.getRow());
+    }
     public int getSick_time() {
         return sick_time;
     }
+    public void setLocation(Location location){
+        this.location = location;
+    }
+
 
     public void setSick_time() {
         this.sick_time++;
@@ -45,10 +57,9 @@ public class Being {
         this.virus = virus;
     }
 
-    private Virus virus = null;
-
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocation(int col,int row) {
+        this.location.setCol(col);
+        this.location.setRow(row);
     }
 
     public List<Virus> getDNA_Flaw() {
@@ -82,14 +93,10 @@ public class Being {
         return age;
     }
 
-    public Being() {
-    }
-
     public void setAge(int age) {
         this.age = age;
 
     }
-
     public boolean isMale() {
         return IsMale;
     }
@@ -110,10 +117,6 @@ public class Being {
         return location;
     }
 
-//    public void ChangeLocation() {
-//        this.location.ChangeLoc();
-//    }
-
     public boolean isVaccinal() {
         return IsVaccinal;
     }
@@ -121,7 +124,6 @@ public class Being {
     public void setVaccinal(boolean vaccinal) {
         IsVaccinal = vaccinal;
     }
-
 
     public int getInf_time() {
         return inf_time;
@@ -143,7 +145,7 @@ public class Being {
     }
     boolean CheckAntibody(Virus virus){
         for (Virus virus1 : Antibody) {
-            if (virus1 == virus1){
+            if (virus1 == virus){
                 return true;
             }
         }

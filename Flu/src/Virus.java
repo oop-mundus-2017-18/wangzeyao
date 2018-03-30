@@ -8,10 +8,11 @@ import java.beans.PropertyVetoException;
  * @Version: 1.0
  */
 public enum Virus {
-    H5N1("h3n2",0.1,2,0.6),H1N1("h1n1",0.2,2,0.),H0N0("h0n0",0.9,2,0.9);
+    H5N1("h3n2",0.5,2,0.1),H1N1("h1n1",0.5,2,0.1),H0N0("h0n0",1,2,0.9);
     private String name;
     private double contag_rate;
     private int incu_period;
+    private double death_rate;
     public String getName() {
         return name;
     }
@@ -24,7 +25,7 @@ public enum Virus {
         this.death_rate = death_rate;
     }
 
-    private double death_rate;
+
 
     public void setName(String name) {
         this.name = name;

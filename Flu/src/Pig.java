@@ -5,7 +5,7 @@
  * @ProjectName: Flu
  * @Version: 1.0
  */
-public class Pig extends Animal {
+public class Pig extends Being {
     public Pig() {
         AddAntibody(Virus.H5N1);
     }
